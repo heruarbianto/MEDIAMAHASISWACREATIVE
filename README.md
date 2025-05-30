@@ -15,7 +15,7 @@
 
 ## Install Dependencies:
 
-cd 3d-portfolio
+cd MEDIAMAHASISWACREATIVE
 npm install
 
 ## Run the Development Server:
