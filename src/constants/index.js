@@ -145,13 +145,13 @@ export const projects = [
         description: 'Indonesian ⇌ Javanese Dictionary is a bilingual digital dictionary designed to facilitate translation between Indonesian and Javanese languages. The project aims to preserve and promote the rich linguistic heritage of the Javanese language by making it more accessible to a wider audience, especially younger generations. Featuring an intuitive interface, the dictionary offers word translations, pronunciation guides, usage examples, and support for different Javanese speech levels (ngoko, krama, krama inggil). It serves as a practical tool for language learners, educators, researchers, and anyone interested in understanding or communicating in Javanese.',
         link: 'https://translate.mmcproject.web.id/',
     },
-    {
-        iconUrl: car,
-        theme: 'btn-back-blue',
-        name: 'HooBank',
-        description: 'Designed and built a Modern UI/UX website using React.js & Tailwind CSS inspired by Figma.',
-        link: 'https://modern-ui-ux-web.vercel.app/',
-    },
+    // {
+    //     iconUrl: car,
+    //     theme: 'btn-back-blue',
+    //     name: 'HooBank',
+    //     description: 'Designed and built a Modern UI/UX website using React.js & Tailwind CSS inspired by Figma.',
+    //     link: 'https://modern-ui-ux-web.vercel.app/',
+    // },
     {
         iconUrl: snapgram,
         theme: 'btn-back-pink',
