@@ -69,7 +69,7 @@ import {
     {
       img: `/img/zani.jpg`,
       name: "Zani Eko F",
-      title: "Administration",
+      title: "Administration & Documentation",
     },
     {
       img: `https://www.material-tailwind.com/img/avatar3.jpg`,
