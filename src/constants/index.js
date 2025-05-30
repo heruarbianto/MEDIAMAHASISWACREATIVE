@@ -143,7 +143,7 @@ export const projects = [
         theme: 'btn-back-green',
         name: 'Dictionary  Indonesian ⇌ Javanese',
         description: 'Indonesian ⇌ Javanese Dictionary is a bilingual digital dictionary designed to facilitate translation between Indonesian and Javanese languages. The project aims to preserve and promote the rich linguistic heritage of the Javanese language by making it more accessible to a wider audience, especially younger generations. Featuring an intuitive interface, the dictionary offers word translations, pronunciation guides, usage examples, and support for different Javanese speech levels (ngoko, krama, krama inggil). It serves as a practical tool for language learners, educators, researchers, and anyone interested in understanding or communicating in Javanese.',
-        link: 'https://dictionary.mmcproject.web.id/',
+        link: 'https://translate.mmcproject.web.id/',
     },
     {
         iconUrl: car,
