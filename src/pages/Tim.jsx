@@ -92,14 +92,7 @@ import {
     return (
       <section className="min-h-screen py-8 px-8 lg:py-28">
       <div className="container mx-auto">
-        <div className="mb-16 text-center lg:mb-28">
-          <Typography
-            variant="h6"
-            color="blue-gray"
-            className="text-lg"
-          >
-            Meet the Team
-          </Typography>
+        <div className="mb-16 mt-20 text-center lg:mb-28">
           <Typography
             variant="h1"
             color="blue-gray"
