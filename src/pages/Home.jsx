@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
-import Loader from '../components/Loader'
+import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import Loader from '../components/Loader';
 
 import Island from '../models/Island';
 import Sky from '../models/Sky';
@@ -9,31 +9,34 @@ import Plane from '../models/Plane';
 import Homeinfo from '../components/Homeinfo';
 
 const Home = () => {
+  const canvasRef = useRef();
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
-  const [rotationY, setRotationY] = useState(4.7); // default rotation Y dari Island
+  const [rotationY, setRotationY] = useState(4.7); // default Y rotation
 
-  // Tangani scroll untuk rotasi horizontal
+  // Tangani scroll → rotasi model + efek klik
   useEffect(() => {
-  let timeout;
+    let timeout;
 
-  const handleWheel = (event) => {
-    setRotationY(prev => prev + event.deltaY * 0.003);
+    const handleWheel = (event) => {
+      setRotationY(prev => prev + event.deltaY * 0.005); // rotasi berdasarkan scroll
 
-    // Simulasi klik mouse aktif saat scroll
-    setIsRotating(true);
-    
-    // Reset kembali setelah delay (anggap scroll selesai)
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      setIsRotating(false);
-    }, 200); // delay 200ms setelah scroll berhenti
-  };
+      setIsRotating(true); // simulasi klik
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setIsRotating(false); // simulasi lepas klik setelah delay
+      }, 200);
+    };
 
-  window.addEventListener('wheel', handleWheel);
-  return () => window.removeEventListener('wheel', handleWheel);
-}, []);
+    const canvas = canvasRef.current;
+    if (canvas) canvas.addEventListener('wheel', handleWheel, { passive: true });
 
+    return () => {
+      if (canvas) canvas.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
+  // Responsif: sesuaikan ukuran & posisi
   const adjustIslandForScreenSize = () => {
     let screenScale = [1, 1, 1];
     let screenPosition = [0, -6.5, -43];
@@ -42,9 +45,7 @@ const Home = () => {
       screenScale = [0.9, 0.9, 0.9];
     }
 
-    // Gunakan rotationY dari state
     const rotation = [0.1, rotationY, 0];
-
     return [screenScale, screenPosition, rotation];
   };
 
@@ -66,13 +67,16 @@ const Home = () => {
   const [PlaneScale, PlanePosition] = adjustPlaneForScreenSize();
 
   return (
-    <section className='w-full h-screen relative'>
+    <section className='w-full h-screen relative overflow-hidden touch-none'>
       <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
         {currentStage && <Homeinfo currentStage={currentStage} />}
       </div>
+
       <Canvas
-        className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
+        ref={canvasRef}
+        className={`w-full h-screen bg-transparent touch-none ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near: 0.1, far: 1000 }}
+        gl={{ powerPreference: 'high-performance' }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
@@ -102,7 +106,7 @@ const Home = () => {
         </Suspense>
       </Canvas>
     </section>
-  )
-}
+  );
+};
 
 export default Home;
